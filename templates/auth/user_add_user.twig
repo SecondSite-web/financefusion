@@ -1,0 +1,61 @@
+{% extends 'sb_index.twig' %}
+{% block body %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Add a New User Account</h6>
+    </div>
+    <div class="card-body">
+        <form id="add-user-form" class="user mt-4" action="{{ site.worker }}add-user.php" method="post" role="form" data-toggle="validator">
+            <div class="messages"></div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control form-control-user"  id="firstname" name="firstname" required>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control form-control-user" id="lastname" name="lastname" required>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <div class="col-sm-6">
+                    <label for="phone">Phone Number</label>
+                    <input type="hidden" name="nonce" value="{{ call_nonce('add-user-form') }}" />
+                    <input type="text" class="form-control form-control-user" id="phone" name="phone" >
+                </div>
+                <div class="col-sm-6">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control form-control-user" id="email" name="email" required>
+                </div>
+            </div>
+
+            <hr class="m-4" />
+            <div class="form-group row mb-3">
+                <div class="col-md-6">
+                    <label for="user_group">User Group</label>
+                    <select class="form-control form-control-sm" name="user_group" id="user_group">
+                        {% for group in userGroups %}
+                            <option value="{{ group.id|e }}">{{ group.user_group|capitalize|e }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="user_group">User Role</label>
+                    <select class="form-control form-control-sm" name="user_role" id="user_role">
+                        {% for role in userRoles %}
+                            <option value="{{ role.userrole|e }}">{{ role.userrole|capitalize|e }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <hr class="m-4" />
+            <button type="submit" id="submit" class="btn btn-success btn-send mt-3"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Update</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock body %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ site.url|e }}/js/add-user.min.js"></script>
+{% endblock scripts %}

@@ -1,0 +1,40 @@
+<option class="place-divider" disabled>National Airport Locations</option>
+{% for key in locations if key.form_grp == 'airport' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>Western Cape Locations</option>
+{% for key in locations if key.province == 'WC' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>Gauteng Locations</option>
+{% for key in locations if key.province == 'GT' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>KZN Locations</option>
+{% for key in locations if key.province == 'KZN' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>Northern Cape Locations</option>
+{% for key in locations if key.province == 'NC' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>Eastern Cape Locations</option>
+{% for key in locations if key.province == 'EC' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>Mpumalanga Locations</option>
+{% for key in locations if key.province == 'MPU' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>Limpopo Locations</option>
+{% for key in locations if key.province == 'LPO' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>North West Province Locations</option>
+{% for key in locations if key.province == 'NWP' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}
+<option class="place-divider" disabled>Free State Locations</option>
+{% for key in locations if key.province == 'FS' %}
+    <option value="{{ key.place|title|e }}">{{ key.place|title|e }}</option>
+{% endfor %}

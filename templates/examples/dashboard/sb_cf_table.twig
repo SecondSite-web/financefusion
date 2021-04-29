@@ -1,0 +1,111 @@
+{% extends 'sb_index.twig' %}
+
+{% block body %}
+
+    <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Form Submission Data</h6>
+      </div>
+      <div class="card-body">
+        <div class="alerts"></div>
+        <div class="table-responsive">
+          <table id="dataTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>View</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in tbody %}
+                <tr>
+                  <td>{{ r.id|capitalize|escape }}</td>
+                  <td>{{ r.firstname|capitalize|escape }} {{ r.lastname|capitalize|escape }}</td>
+                  <td><a href="mailto:{{ r.email|escape }}">{{ r.email|escape }}</a></td>
+                  <td>{{ r.message|capitalize|escape }}</td>
+                  <td>{{ r.date|capitalize|escape }}</td>
+                  <td>{% if user.userrole == 'admin' or user.userrole == 'root' %}
+                    <form class="cfstatus-form" id="change-cf-status{{ r.id|escape }}" action="{{ site.admin }}php/change-cf-status.php" method="post" role="form">
+                      <input style="display:none;"  class="hidden" type="hidden" id="id" name="id" value="{{ r.id|escape }}" placeholder="{{ r.id|escape }}" required="required" />
+                      <input type="hidden" name="nonce" value="{{ call_nonce('cfstatus-form') }}" />
+                      <select class="form-control form-control-sm" id="status" name="status" value="{{ r.status|capitalize|escape }}" type="submit">
+                        <option value="submitted" {% if r.status == "submitted" or r.status == '' %}selected{% endif %}>Submitted</option>
+                        <option value="replied" {% if r.status == "replied" %}selected{% endif %}>Replied</option>
+                        <option value="spam" {% if r.status == "spam" %}selected{% endif %}>Spam</option>
+                        <option value="closed" {% if r.status == "closed" %}selected{% endif %}>Closed</option>
+                      </select>
+                      </form>{% endif %}
+                  </td>
+                  <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rentalModal{{ r.id|escape }}">
+                      <i class="fa fa-info-circle"></i>
+                    </button>
+                    <!-- Logout Modal-->
+                    <div class="modal fade" id="rentalModal{{ r.id|escape }}" tabindex="-1" role="dialog" aria-labelledby="rentalModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="rentalModalLabel">Contact Form Submission Details</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="container">
+                              <div class="row">
+                                <table class="table table-striped">
+                                  <tr>
+                                    <td>Id.</td>
+                                    <td>{{ r.id|capitalize|escape }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Name</td>
+                                    <td>{{ r.firstname|capitalize|escape }} {{ r.lastname|capitalize|escape }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Email</td>
+                                    <td><a href="mailto:{{ r.email|escape }}">{{ r.email|escape }}</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Message</td>
+                                    <td>{{ r.message|capitalize|escape }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Date:</td>
+                                    <td>{{ r.date|capitalize|escape }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Status</td>
+                                    <td>{{ r.status|capitalize|escape }}</td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+  <script nonce="{{ call_nonce('datatables_nonce', true) }}" type="text/javascript" src="{{ site.url }}vendor/datatables/jquery.dataTables.min.js"></script>
+  <script nonce="{{ call_nonce('bootstrap_nonce', true) }}" type="text/javascript" src="{{ site.url }}vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script nonce="{{ call_nonce('cf_table', true) }}" type="text/javascript" src="{{ site.admin }}js/cf-table.min.js"></script>
+{% endblock %}

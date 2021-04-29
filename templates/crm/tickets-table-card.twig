@@ -1,0 +1,132 @@
+<div class="card z-depth-0 bordered">
+    <div class="card-header pt-2 pb-2" id="heading{{ ticket.ticket_id }}">
+        <div class="row">
+            <div class="col-md-5">
+                <span class="m-0 p-0"><small>Ticket Subject:</small></span>
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ ticket.ticket_id }}"
+                            aria-expanded="true" aria-controls="collapse{{ ticket.ticket_id }}">
+                        #{{ ticket.ticket_id }} - {{ ticket.subject }}
+                    </button>
+                </h5>
+            </div>
+            <div class="col-md-3">
+                {% for single in users %}
+                    {% if ticket.user_id == single.id %}
+                        <ul class="list-unstyled p-0 m-0">
+                            <li class="p-0 m-0"><small>Opened by:
+                                    <span class="text-primary"> {{ single.firstname|capitalize|e }} {{ single.lastname|capitalize|e }}</span>
+                                    - <a href="mailto:{{ single.email|e }}">{{ single.email|e }}</a>
+                                </small>
+                            </li>
+                            <li class="p-0 m-0">
+                                <small>Opened on: <span class="text-danger">{{ ticket.date|e }}</span></small>
+                            </li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-md-2">
+                <ul class="list-unstyled">
+                    <li>
+                        <small>Group:
+                            {% for group in userGroups %}
+                                {% if ticket.dest_group == group.id %}
+                                    <span class="text-primary"> {{ group.user_group|capitalize|e }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </small>
+                    </li>
+                    <li>
+                        <small>Priority:
+                            {% if ticket.priority == 'low' %}
+                                <span class="text-success">{{ ticket.priority|capitalize|e }}</span>
+                            {% elseif ticket.priority == 'medium' %}
+                                <span class="text-warning">{{ ticket.priority|capitalize|e }}</span>
+                            {% else %}
+                                <span class="text-danger">{{ ticket.priority|capitalize|e }}</span>
+                            {% endif %}
+                        </small>
+                    </li>
+                    <li>
+                        <small>
+                            Status:
+                            {% if ticket.status == 'open' %}
+                                <span class="text-primary"> {{ ticket.status|capitalize|e }}</span>
+                            {% elseif ticket.status == 'pending' %}
+                                <span class="text-warning"> {{ ticket.status|capitalize|e }}</span>
+                            {% elseif ticket.status == 'escalated' %}
+                                <span class="text-danger"> {{ ticket.status|capitalize|e }}</span>
+                            {% else %}
+                                <span class="text-success"> {{ ticket.status|capitalize|e }}</span>
+                            {% endif %}
+                        </small>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                {% if (ticket.status != 'closed') or (user.userrole == 'admin') %}
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <button type="button" class="btn-reply btn btn-primary btn-sm" data-toggle="modal" data-target="#replyModal{{ ticket.ticket_id }}">
+                            <small><i class="fa fa-arrow-alt-circle-up fa-sm"></i> Reply</small>
+                        </button>
+                        {% include 'reply_form.twig' %}
+                    </li>
+                    {% if (ticket.user_id == user.id) or (user.userrole == 'admin') %}
+                        <li>
+                            <button type="button" class="btn-status btn btn-primary btn-sm mt-1"  data-toggle="modal" data-target="#modifyModal{{ ticket.ticket_id }}">
+                                <small><i class="fa fa-gears fa-sm"></i> Modify Ticket</small>
+                            </button>
+                            <!-- Modal -->
+                            {% include 'modify-ticket.twig' %}
+                        </li>
+                    {% endif %}
+                    {% if (ticket.user_id == user.id) or (user.userrole == 'admin') %}
+                        <li>
+                            <button type="button" class="btn-close btn btn-success btn-sm mt-1" data-toggle="modal" data-target="#confirmModal{{ ticket.ticket_id }}">
+                                <small><i class="fa fa-close fa-sm"></i> Close Ticket</small>
+                            </button>
+                            {% include 'confirm_close.twig' %}
+                        </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div id="collapse{{ ticket.ticket_id|e }}" class="collapse" aria-labelledby="heading{{ ticket.ticket_id|e }}"
+         data-parent="#ticketAccordian">
+        <div class="card-body">
+            <div class="text-primary">
+                Message:
+            </div>
+            <div class="message-container">
+                {{ ticket.message|e }}
+            </div>
+            <hr />
+            {% for meta in ticketMeta %}
+                {% if ticket.ticket_id == meta.ticket_id %}
+                    {% for single in users %}
+                        {% if meta.user_id == single.id %}
+                            <div class="meta-wrapper">
+                                <div class="meta-header">
+                                    <span class="text-primary"><small>{{ meta.date }}</small></span>
+                                    <span>
+                        <small>- {{ single.firstname|capitalize|e }} {{ single.lastname|capitalize|e }}
+                      - <a href="mailto:{{ single.email|e }}">{{ single.email|e }}</a> replied:
+                        </small>
+                      </span>
+                                </div>
+                                <div class="meta-message">
+                                    {{ meta.message }}
+                                </div>
+                                <hr />
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

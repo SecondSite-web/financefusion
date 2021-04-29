@@ -1,0 +1,158 @@
+{% extends '../dashboard/sb_index.twig' %}
+  {% block head %}
+      <link href="{{ site.url }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  {%  endblock %}
+  {% block body %}
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Booking History Table</h6>
+          </div>
+          <div class="card-body" id="usertbl">
+              <div class="alerts"></div>
+              <div class="table-responsive">
+                  <table id="dataTable" class="table table-striped">
+                      <thead>
+                      <tr>
+                          <th>ID.</th>
+                          {% if user.userrole == 'root' or user.userrole == 'admin' %}
+                          <th>Name</th>
+                          {% endif %}
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th>Res Date</th>
+                          <th>Pickup Location</th>
+                          <th>Group</th>
+                          <th>Days</th>
+                          {% if user.userrole == 'root' or user.userrole == 'admin' %}
+                          <th>Status</th>
+                          {% endif %}
+                          <th><i class="fa fa-info-circle"></i></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {% for r in tbody %}
+                      <tr>
+                          <td contenteditable id="{{ r.rental_id|escape }}">{{ r.rental_id|escape }}</td>
+                          {% if user.userrole == 'root' or user.userrole == 'admin' %}
+                          <td contenteditable id="{{ r.firstname|escape }} {{ r.lastname|escape }}">{{ r.firstname|capitalize|escape }} {{ r.lastname|capitalize|escape }}</td>
+                          {% endif %}
+                          <td contenteditable id="{{ thead.1|escape }}">{{ r.start_date|capitalize|escape }}</td>
+                          <td contenteditable id="{{ thead.4|escape }}">{{ r.end_date|capitalize|escape }}</td>
+                          <td contenteditable id="{{ thead.35|escape }}">{{ r.timestamp|capitalize|escape }}</td>
+                          <td contenteditable id="{{ thead.7|escape }}">{{ r.pickup_location|capitalize|escape }}</td>
+                          <td contenteditable id="{{ thead.10|escape }}">{{ r.vehicle_group|capitalize|escape }}</td>
+                          <td contenteditable id="{{ thead.22|escape }}">{{ r.total_days|capitalize|escape }}</td>
+                          {% if user.userrole == 'admin' or user.userrole == 'root' %}
+                          <td>
+                              <form class="status-form" id="change-status{{ r.rental_id|escape }}" action="{{ site.admin }}php/change-status.php" method="post" role="form">
+                                  <input style="display:none;"  class="hidden" type="hidden" id="rental_id" name="rental_id" value="{{ r.rental_id|escape }}" placeholder="{{ r.rental_id|escape }}" required="required" />
+                                  <input type="hidden" name="nonce" value="{{ call_nonce('status-form') }}" />
+                                  <select class="select form-control form-control-sm" id="status{{ r.rental_id|escape }}" name="status" value="{{ r.status|capitalize|escape }}" type="submit">
+                                      <option value="enquiry" {% if r.status == "enquiry" or r.status == '' %}selected{% endif %}>Enquiry</option>
+                                      <option value="approved" {% if r.status == "approved" %}selected{% endif %}>Approved</option>
+                                      <option value="declined" {% if r.status == "declined" %}selected{% endif %}>Declined</option>
+                                      <option value="disputed" {% if r.status == "disputed" %}selected{% endif %}>Disputed</option>
+                                      <option value="paid" {% if r.status == "paid" %}selected{% endif %}>Paid</option>
+                                      <option value="closed" {% if r.status == "closed" %}selected{% endif %}>Closed</option>
+                                  </select>
+                              </form>
+                          </td>
+                          {% endif %}
+                          <td>
+                              <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rentalModal{{ r.rental_id|escape }}">
+                                  <i class="fa fa-info-circle"></i>
+                              </button>
+                              <!-- Logout Modal-->
+                              <div class="modal rental-modal fade" id="rentalModal{{ r.rental_id|escape }}" tabindex="-1" role="dialog" aria-labelledby="rentalModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document" style="max-width: 1500px;">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="rentalModalLabel">Rental Details</h5>
+                                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">×</span>
+                                              </button>
+                                          </div>
+                                          <div class="modal-body">
+                                              <div class="container">
+                                                  <div class="row">
+                                                      <div class="col-md-6">
+                                                          <ul class="list-unstyled">
+                                                              <li>{{ r.firstname }} {{ r.lastname }}</li>
+                                                              <li><a href="mailto:{{ r.email }}">{{ r.email }}</a></li>
+                                                              <li>{{ r.phone }}</li>
+                                                              <li><strong>Rental Start:</strong></li>
+                                                              <li>{{ r.start_day }} the {{ r.start_date }} (YYYY-MM-DD) at {{ r.start_time }}</li>
+                                                              <li>Rental Location: {{ r.pickup_location }}</li>
+                                                              <li><br /></li>
+                                                              <li><strong>Rental End:</strong></li>
+                                                              <li>{{ r.end_day }} the {{ r.end_date }} (YYYY-MM-DD) at {{ r.end_time }}</li>
+                                                              <li>Return Location: {{ r.return_location }}</li>
+                                                              <li><br /></li>
+                                                              <li>Vehicle Group: <strong>{{ r.vehicle_group }}</strong></li>
+
+                                                              <li><br /></li>
+                                                              <li><strong>Financial Details:</strong></li>
+                                                              <li>Rental Days: <strong>{{ r.total_days }}</strong> at a rate of <strong>R{{ r.rate }}.00</strong></li>
+                                                              <li>Cover Level: <strong>{{ r.cover }}</strong> with a liability of <strong>R{{ r.liability }}.00</strong></li>
+                                                              <li>Payment Method: <strong>{{ r.payment_method }} card</strong></li>
+                                                              <li>The extra's at a total of <strong>R{{ r.extra_charges }}.00</strong></li>
+                                                              <li>The total deposit amount required on the card is: <strong>R{{ r.this_deposit_amount }}.00</strong></li>
+                                                          </ul>
+                                                      </div>
+                                                      <div class="col-md-6">
+                                                          <ul class="list-unstyled mt-4">
+                                                              <li><strong>Optional Extra's</strong></li>
+                                                              <li>Additional Drivers: <strong>{{ r.drivers_number }}</strong></li>
+                                                              <li>Young Driver: <strong>{{ r.young_driver }}</strong></li>
+                                                              <li>Baby Seat: <strong>{{ r.baby_seat }}</strong></li>
+                                                              <li>Delivery: <strong>{{ r.delivery }}</strong></li>
+                                                              <li>Delivery Address: <strong>{{ r.delivery_address }}</strong></li>
+                                                              <li>Collection: <strong>{{ r.collection }}</strong></li>
+                                                              <li>Collection Address: <strong>{{ r.collection_address }}</strong></li>
+                                                              <li>Tyre and Rim Cover: <strong>{{ r.tyre_waiver }}</strong></li>
+                                                              <li>GPS: <strong>{{ r.gps }}</strong></li>
+                                                              <li>Usb Charger: <strong>{{ r.usb_charger }}</strong></li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <div class="row">
+                                                      <div class="col-md-12">
+                                                          {% if r.payment_method == 'credit' %}
+                                                              <p>WHAT WILL BE TAKEN OFF THE CARD IF USING CREDIT CARD: RENTAL DAYS <strong>R{{ r.rate }}.00 X {{ r.total_days }} = R{{ r.days_total }}.00</strong> + EXCESS DEPOSIT AMOUNT (REFUNDABLE) + RENTAL DEPOSIT 1500.00 (REFUNDABLE) + CONTRACT FEE R66.00 AND ANY EXTRAS YOU MAY REQUIRE (SELECTED EXTRA'S @ R{{ r.extra_charges }}.0): The rental total is R{{ r.rental_total }}.00 TOTAL NEEDED ON CARD: R{{ r.this_deposit_amount }}.00</p>
+                                                      {#    {% elseif r.payment_method == 'debit' %}
+                                                              <p>WHAT WILL BE TAKEN OFF THE CARD IF USING SOUTH AFRICAN DEBIT/CHEQUE CARD: RENTAL DAYS <strong>R{{ r.rate }}.00 X {{ r.total_days }} days = R{{ r.days_total }}.00</strong> + EXCESS DEPOSIT AMOUNT (REFUNDABLE) + DEBIT/CHEQUE CARD DEPOSIT R1750.00 (REFUNDABLE) RENTAL DEPOSIT R1500.00 (REFUNDABLE) + CONTRACT FEE R85.00 AND ANY EXTRAS YOU MAY REQUIRE (SELECTED EXTRA'S @ R{{ r.extra_charges }}.0): The rental total is R{{ r.rental_total }}.00 TOTAL NEEDED ON CARD: R{{ r.this_deposit_amount }}.00</p>
+                                                          #}
+                                                          {% endif %}
+                                                          <p>Rate Inclusions : Collision damage & Theft Loss Waiver, Unlimited Mileage , Airport Surcharge, Tourism Levy, Value Added Tax @ 15% </p>
+
+                                                          <p style="font-size:11.0pt;font-family:Calibri Light,sans-serif">Rate Exclusions : Non-waiverable Excess, Rental (Rental days Additional fees), Rental deposit(R{{setting.rental_deposit|number_format(2,'.',',')}}) Fuel, Additional Driver Charge  @ R{{setting.add_driver|number_format(2,'.',',')}}.00 per driver per rental, Young Driver Surcharge @ R{{setting.young_driver|number_format(2,'.',',')}} per day, per driver(Under 23 years of age and in possession of a drivers licence for three years), Optional Equipment (i.e. baby seats  @ R{{setting.baby_seat|number_format(2,'.',',')}} per seat per rental), One Way Drop Off Charges, Cross Border Fees (R1350.00 Botswana, Namibia &amp; Mozambique, Swaziland, Lesotho  NO CROSS BORDER INTO ANGOLA, MALAWI OR ZAMBIA), Delivery &amp; Collection Fees within 25kms: Office hours R{{setting.del_col_ohours|number_format(2,'.',',')}}, After hours R{{setting.del_col_ahours|number_format(2,'.',',')}}), Contract fee of R{{setting.contract_fee|number_format(2,'.',',')}}, Traffic Fine Handling Fee of R{{setting.fine_handling|number_format(2,'.',',')}}, Accident admin Fee of R{{setting.accident_admin_fee_over|number_format(2,'.',',')}}(in the event of an accident for damages over R1000.00 AND R{{setting.accident_admin_fee_under|number_format(2,'.',',')}} for damages under R1000.00), No Show Fee, Assessors fee R{{setting.assessors_fee_over|number_format(2,'.',',')}} for claims over R1000.00 AND R{{setting.assessors_fee_under|number_format(2,'.',',')}} for claims under R1000.00 ; Water and under-carriage damage to vehicles, Change over fee of R{{setting.change_over_fee|number_format(2,'.',',')}}(unless vehicle is mechanically unsound) Tyre and Rim damage, Hubcaps, Windscreen and Tyre waiver fee of R{{setting.tyre_waiver|number_format(2,'.',',')}} per day (the windscreen and tyre waiver offer you additional cover against windscreen chips and tyre damages which are not covered by our normal standard and super excesses, Please ask your rental agent at the counter for more details, eToll charges, Refuelling Levy of R{{setting.refuel_levy|number_format(2,'.',',')}} (charged to customer when the refuelling amount is more than R30.00, Valet Fee R{{setting.valet_half|number_format(2,'.',',')}} half and R{{setting.valet_full|number_format(2,'.',',')}} full, E Toll deposit R{{setting.e_toll|number_format(2,'.',',')}} (in applicable regions only), GPS R{{setting.gps|number_format(2,'.',',')}} per day and/or USB Car Charger R{{setting.usb_charger|number_format(2,'.',',')}} per day Please note that in the event of  loss or damage to the device, the applicable excess amount of R{{setting.accessories_excess|number_format(2,'.',',')}} will be charged per USB Charger or GPS, Skipped service fee R{{setting.skipped_service|number_format(2,'.',',')}} per vehicle</p>
+
+
+                                                          <p style="font-size:11.0pt;font-family:Calibri Light,sans-serif">**The excess deposit and rental deposit is refundable should vehicle return fully fuelled and with no damages or loss, should there be any damages or loss or fuel to be added this will be taken off the deposit and you will be refunded the difference (if applicable)** </p>
+                                                          <p style="font-size:11.0pt;font-family:Calibri Light,sans-serif">Re-fuelling fee: Each vehicle is refuelled on termination irrespective of whether the Renter has refuelled the vehicle. The Renter will be liable for a refuelling fee and the cost of the fuel. A R{{setting.refuel_levy|number_format(2,'.',',')}} service fee will be charged to the customer when the refuelling amount is more than R30.00 </p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                                              <button class="btn btn-secondary pdf-button">PDF</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div id="editor"></div>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  {% endblock %}
+{% block scripts %}
+    <script nonce="{{ call_nonce('rental_history', true) }}" type="text/javascript" src="{{ admin.url }}js/rental-history.min.js"></script>
+{% endblock %}

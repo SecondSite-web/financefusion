@@ -1,0 +1,36 @@
+{% extends 'sb_index.twig' %}
+  {% block head %}
+    <link href="{{ site.url }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+{%  endblock %}
+  {% block body %}
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">{{page.title}}</h6>
+  </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <div align="right">
+         <button type="button" name="add" id="add" class="btn btn-info">Add</button>
+        </div>
+        <br />
+        <div id="alert_message"></div>
+        <table id="user_data" class="table table-bordered table-striped">
+         <thead>
+          <tr>
+           <th>First Name</th>
+           <th>Last Name</th>
+           <th></th>
+          </tr>
+         </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script src="{{ site.url }}vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="{{ site.url }}vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="{{ site.admin }}js/demo/datatables-demo.js"></script>
+  <script type="text/javascript" src="{{ site.admin }}tbl/ajax.js"></script>
+{% endblock %}
+

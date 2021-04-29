@@ -1,0 +1,8 @@
+parameters:
+  bootstrapFiles:
+    - dash-config.php
+  scanFiles:
+    - twig-functions.php
+  scanDirectories:
+    - vendor
+    - inc/php

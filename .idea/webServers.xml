@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f98e6d1f-94ba-4373-ad1b-0b101ba7b7d3" name="wpbootstrap" url="http://ftp.wpbootstrap.xyz">
+        <fileTransfer host="ftp.wpbootstrap.xyz" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

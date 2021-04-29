@@ -1,0 +1,14 @@
+{% extends 'user_index.twig' %}
+    {% block body %}
+        <form id="activate-form" class="user" action="{{ site.worker }}/activate.php" method="post" role="form" data-toggle="validator">
+            <div class="messages"></div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="key" name="key" placeholder="Paste the key here" required="required">
+                <input type="hidden" name="nonce" value="{{ call_nonce('activate-form') }}" />
+            </div>
+            <button type="submit" id="submit" class="btn btn-success btn-send">Submit</button>
+        </form>
+    {% endblock body %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ site.url|e }}/js/activate.min.js"></script>
+{% endblock scripts %}

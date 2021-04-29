@@ -1,0 +1,83 @@
+{% extends 'sb_index.twig' %}
+{% block head %}
+  <link href="{{ site.url }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+{% endblock head %}
+{% block body %}
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Rental Costs and Settings</h6>
+      </div>
+      <div class="card-body" id="usertbl">
+          <div class="alerts"></div>
+          <div class="table-responsive">
+              <table id="dataTable" class="table table-striped">
+                  <thead>
+                  <tr>
+                      <th>Setting Code</th>
+                      <th>Setting Value</th>
+                      <th>Description</th>
+                      <th></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for r in setting %}
+                      <tr>
+                          <td>{{ r.setting|escape }}</td>
+                          <td>{{ r.value|escape }}</td>
+                          <td>{{ r.description|escape }}</td>
+                          <td>
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{r.setting|escape}}Modal">
+                                  <i class="fa fa-pen-fancy"></i>
+                              </button>
+                              <!-- Modal -->
+                              <div class="modal fade" id="{{ r.setting|escape }}Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">{{ r.description|escape }}</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                              </button>
+                                          </div>
+                                          <form class="settings-form" id="{{r.setting|escape}}" action="{{ site.admin }}php/update-setting.php" method="post" role="form">
+                                              <div class="modal-body">
+                                                  <div class="messages"></div>
+                                                  <input style="visibility: hidden;" type="hidden" name="setting" value="{{ r.setting|escape }}" placeholder="{{ r.setting|escape }}"/>
+                                                  <div class="input-group mb-1">
+                                                      <div class="input-group-prepend">
+                                                          <span class="input-group-text">Value</span>
+                                                      </div>
+                                                      <input type="hidden" name="nonce" value="{{ call_nonce('settings-form') }}" />
+                                                      <input type="text" class="form-control" name="value" value="{{ r.value|escape }}" placeholder="{{ r.value|escape }}" required="required">
+                                                  </div>
+                                                  <div class="input-group mb-3">
+                                                      <div class="input-group-prepend">
+                                                          <span class="input-group-text">Description</span>
+                                                      </div>
+                                                      <textarea type="text" class="form-control" name="description" value="{{ r.description|escape }}" placeholder="{{ r.description|escape }}" required="required">{{ r.description|escape }}</textarea>
+                                                  </div>
+                                                  <p class="text-danger"><small>* Please use exact formatting without the currency sign or decimal points</small></p>
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                                              </div>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+
+{% endblock body %}
+{% block scripts %}
+    <script nonce="{{ call_nonce('settings_script', true) }}" type="text/javascript" src="{{ admin.url }}js/rental-settings.min.js"></script>
+{% endblock scripts %}

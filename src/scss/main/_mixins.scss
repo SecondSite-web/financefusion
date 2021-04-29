@@ -1,0 +1,12 @@
+@mixin bg-fixed-center {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+@mixin bg-cover-center {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}

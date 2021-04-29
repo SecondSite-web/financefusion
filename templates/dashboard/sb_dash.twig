@@ -1,0 +1,96 @@
+{% extends 'sb_index.twig' %}
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4 heading-container">
+    <h1 class="h3 mb-0 text-gray-800">{{ page.title }}</h1>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Open Tickets Overview</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><small>Open Tickets: <span class="text-danger">{{ openTicket }}</span> </small></div>
+              {% for count in counts %}
+                <div class="count-wrapper">
+                  {{ count.group|capitalize|e }}: <span class="text-primary">{{ count.count|e }}</span>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Contact Form</div>
+              <div class="h5 mb-5 font-weight-bold text-gray-800"> <small>Open Submissions: <span class="text-primary">{{ contacts|e }}</span> </small></div>
+              <a href="{{ site.url|e }}/dashboard/contact-form-table.php"><small>View all Submissions</small></a>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-pen-fancy fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">User Overview</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"> <small>Active Users: <span class="text-primary">{{ userCount }}</span> </small></div>
+              {% for grouped in groupUsers %}
+                <div class="count-wrapper">
+                  {{ grouped.group|capitalize|e }}: <span class="text-primary">{{ grouped.count|e }}</span>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">We the People</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"> <small>Submissions</small></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-comments fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+{% endblock %}
+
+

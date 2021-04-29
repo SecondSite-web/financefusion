@@ -1,0 +1,16 @@
+{% extends 'sb_index.twig' %}
+
+{% block body %}
+  <div class="accordion" id="ticketAccordian">
+    {% for ticket in tickets %}
+      {% if (user.usergroup == ticket.dest_group) or (user.userrole == 'admin') or (user.id == ticket.user_id) %}
+        {% if ticket.status != 'closed' %}
+          {% include 'tickets-table-card.twig' %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script type="text/javascript" src="{{ site.url|e }}/js/tickets-table.min.js"></script>
+{% endblock %}

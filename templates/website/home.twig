@@ -1,0 +1,61 @@
+{% extends 'index.twig' %}
+{% import 'form_macros.twig' as form %}
+
+{% block body %}
+
+    <div class="jumbotron">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Featured Post Title</h1>
+                    <p>{{ post.page_url }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container bg-3 text-center">
+        <h3>Category One Title</h3><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <p>Some text..</p>
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+            <div class="col-sm-4">
+                <p>Some text..</p>
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+            <div class="col-sm-4">
+                <p>Some text..</p>
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+        </div>
+    </div><br>
+    <div class="container">
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <hr />
+            </div>
+        </div>
+    </div>
+    <div class="container bg-3 text-center">
+        <h3>Category Two Title</h3><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <p>Some text..</p>
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+            <div class="col-sm-4">
+                <p>Some text..</p>
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+            <div class="col-sm-4">
+                <p>Some text..</p>
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            </div>
+        </div>
+    </div><br><br>
+{% endblock body %}
+
+
+

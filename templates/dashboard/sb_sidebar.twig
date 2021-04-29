@@ -1,0 +1,122 @@
+<!-- Sidebar -->
+    <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ site.admin }}/">
+        <div class="sidebar-brand-icon">
+          <img class="img-fluid logo" src="#" alt="" />
+        </div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      {% if user.userrole == 'admin' %}
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        My Dashboard
+      </div>
+      <ul class="list-unstyled">
+        <li class="nav-item">
+          <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.url|e }}/dashboard/">
+            <i class="fas fa-fw fa-info-circle"></i>
+            <span>Overview</span></a>
+        </li>
+      </ul>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+      {% endif %}
+
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        My Account
+      </div>
+      <ul class="list-unstyled">
+        <li class="nav-item">
+          <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.admin }}/account.php">
+            <i class="fas fa-fw fa-user-astronaut"></i>
+            <span>Account</span></a>
+        </li>
+      </ul>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      {% if user.userrole == 'admin' %}
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          Admin Functions
+        </div>
+      <ul class="list-unstyled">
+        <li class="nav-item">
+          <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.admin }}/users-table.php">
+            <i class="fas fa-fw fa-users"></i>
+            <span>User Accounts</span></a>
+        </li>
+
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.admin }}/add-user.php">
+            <i class="fas fa-fw fa-envelope-open"></i>
+            <span>Add User</span></a>
+        </li>
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.admin }}/user-groups.php">
+            <i class="fas fa-fw fa-users"></i>
+            <span>User Groups</span></a>
+        </li>
+      </ul>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Messages
+      </div>
+
+      <ul class="list-unstyled">
+        <li class="nav-item">
+          <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.admin }}/contact-form-table.php">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Contact Form</span></a>
+        </li>
+      </ul>
+        <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+      {% endif %}
+      <div class="sidebar-heading">
+        Ticket Functions
+      </div>
+      <div class="dropdown">
+
+        <ul class="list-unstyled">
+          <!-- Nav Item - Tables -->
+          <li class="nav-item">
+            <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.admin }}/open-ticket.php">
+              <i class="fas fa-fw fa-users"></i>
+              <span>Open Ticket</span></a>
+          </li>
+          <!-- Nav Item - Tables -->
+          <li class="nav-item">
+            <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.admin }}/tickets.php">
+              <i class="fas fa-fw fa-users"></i>
+              <span>Tickets</span></a>
+          </li>
+          <!-- Nav Item - Tables -->
+          <li class="nav-item">
+            <a class="nav-link mt-1 mb-1 pt-1 pb-1" href="{{ site.admin }}/closed-tickets.php">
+              <i class="fas fa-fw fa-users"></i>
+              <span>Closed Tickets</span></a>
+          </li>
+        </ul>
+      </div>
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->

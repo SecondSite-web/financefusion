@@ -1,0 +1,92 @@
+{% extends 'sb_index.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="profile-form" class="user mt-4" action="{{ site.admin }}php/add.php" method="post" role="form" data-toggle="validator">
+
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="firstname">First Name</label>
+                            <input type="text" class="form-control form-control-user"  id="firstname" name="firstname" required>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control form-control-user" id="lastname" name="lastname" required>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-sm-6">
+                            <label for="phone">Phone Number</label>
+                            <input type="hidden" name="nonce" value="{{ call_nonce('profile-form') }}" />
+                            <input type="text" class="form-control form-control-user" id="phone" name="phone" >
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control form-control-user" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <hr class="m-4" />
+
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <label for="business">Business Name</label>
+                            <input type="text" class="form-control form-control-user" id="business" name="business">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <label for='start_date'>Founding Date</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                <input type='text' class="form-control" name="opening_date" id='opening_date' />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <label for="industry">What industry do you work in?</label>
+                            <input type="text" class="form-control form-control-user" id="industry" name="industry" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <label for="description">Description</label>
+                            <textarea type="text" class="form-control form-control-user" id="description" name="description" ></textarea>
+                        </div>
+                    </div>
+                    <hr class="m-4" />
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <label for="address_street">Business Address</label>
+                            <input type="text" class="form-control form-control-user" id="address_street" name="address_street" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control form-control-user" id="city" name="city" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <label for="country">Country</label>
+                            <input type="text" class="form-control form-control-user" id="country" name="country" />
+                        </div>
+                    </div>
+                    <hr class="m-4" />
+                    <div class="messages"></div>
+                    <button type="submit" id="submit" class="btn btn-success btn-send mt-3"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block scripts %}
+    <script nonce="{{ call_nonce('script_nonce', true) }}" type="text/javascript" src="{{ site.url|e }}vendor/moment/moment.min.js"></script>
+    <script nonce="{{ call_nonce('script_nonce', true) }}" type="text/javascript" src="{{ site.url|e }}vendor/datimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script nonce="{{ call_nonce('script_nonce', true) }}" type="text/javascript" src="{{ site.admin|e }}js/add.min.js"></script>
+{% endblock scripts %}

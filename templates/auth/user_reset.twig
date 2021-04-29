@@ -1,0 +1,21 @@
+{% extends 'user_index.twig' %}
+    {% block body %}
+        <form id="reset-form" class="reset-password-form" action="{{ site.admin }}php/reset.php" method="post" role="form" data-toggle="validator">
+            <div class="messages"></div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="key" name="key" placeholder="Paste the key here" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="New Password Please" required="required">
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="nonce" value="{{ call_nonce('reset-form') }}" />
+                <input type="password" class="form-control form-control-user" id="confirm_password" name="confirm_password" placeholder="Repeat Password Please" required="required">
+            </div>
+            <button type="submit" id="submit" class="btn btn-success btn-send">Submit</button>
+        </form>
+    {% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ site.url }}/js/reset.min.js"></script>
+{% endblock scripts %}
+

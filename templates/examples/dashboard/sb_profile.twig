@@ -1,0 +1,183 @@
+{% extends 'sb_index.twig' %}
+{% block body %}
+    <div class="row" id="profile-banner">
+        <div class="card p-4 detail-card">
+            <div class="row">
+                <div class="col">
+                    <div class="profile-wrapper mb-3 shadow-sm">
+                        {% if user.profilepic == null %}
+                            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                        {% else %}
+                            <img src="{{ site.url }}uploads/profiles/{{ user.profilepic }}" class="img-responsive" style="width:100%" alt="Image">
+                        {% endif %}
+                        <!-- Button trigger modal -->
+                        <p><small>Please Upload your photo or logo</small></p>
+                    </div>
+                </div>
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li><h3>{{ user.firstname }} {{ user.lastname }}</h3></li>
+                        <li><a href="mailto:{{ user.email }}">{{ user.email|e }}</a></li>
+                        <li>{{ user.phone|escape|capitalize }}</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-primary float-right edit-btn" data-toggle="modal" data-target="#profile-pic-modal">
+                    <i class="fa fa-pen-fancy"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="card p-4 detail-card">
+            <div class="card-body">
+                <h4 class="card-title">Business Details</h4>
+                <ul class="list-unstyled">
+                    <li><h5 class="text-dark">{{ user.business|escape|capitalize }}</h5> </li>
+                    <li>In: <span class="text-dark">{{ user.country|e|title }} - {{ user.city|e|title }}</span></li>
+                    <li>Founded: <span class="text-dark">{{ user.opening_date|escape|capitalize }}</span></li>
+                    <li>Industry: <span class="text-dark">{{ user.industry|escape|capitalize }}</span></li>
+                    <li>Description:</li>
+                </ul>
+                <p><span class="text-dark">{{ user.description|escape|capitalize }}</span></p>
+                <button type="button" class="btn btn-primary float-right edit-btn" data-toggle="modal" data-target="#details-modal">
+                    <i class="fa fa-pen-fancy"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="profile-pic-modal" tabindex="-1" role="dialog" aria-labelledby="profile-pic-modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Profile Picture Upload</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="profile-wrapper text-center mt-3 mb-3">
+                        {% if user.profilepic == null %}
+                            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                        {% else %}
+                            <img src="{{ site.url }}uploads/profiles/{{ user.profilepic }}" class="img-responsive" style="width:100%" alt="Image">
+                        {% endif %}
+                    </div>
+                    <form id="profile-pic" action="{{ site.admin }}php/profile-pic.php" method="POST" enctype="multipart/form-data">
+                        <div class="custom-file mb-4">
+                            <input class="custom-file-input" type="file" name="profile-upload" id="profile-upload" />
+                            <label class="custom-file-label" for="profile-upload">Choose file</label>
+                            <p class="text-danger text-xs">Any square bigger than 250 x 250 px. Recommended image size of 512 x 512 px</p>
+                            <span><input class="btn btn-success" type="submit" value="Upload File"/></span><span class="messages"></span>
+                        </div>
+                        <input type="hidden" value="{{ user.id }}" name="uid" id="uid">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Details Update</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="profile-form" class="user mt-4" action="{{ site.admin }}php/profile.php" method="post" role="form" data-toggle="validator">
+                        <div class="messages"></div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="firstname">First Name</label>
+                                <input type="text" class="form-control form-control-user"  id="firstname" name="firstname" placeholder="{{ user.firstname|escape|capitalize }}" value="{{ user.firstname|escape|capitalize }}" required>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="{{ user.lastname|escape|capitalize }}" value="{{ user.lastname|escape|capitalize }}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-6">
+                                <label for="phone">Phone Number</label>
+                                <input type="hidden" name="nonce" value="{{ call_nonce('profile-form') }}" />
+                                <input type="text" class="form-control form-control-user" id="phone" name="phone" placeholder="{{ user.phone|escape|capitalize }}" value="{{ user.phone|escape|capitalize }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="{{ user.email|escape }}" value="{{ user.email|escape }}" required="required">
+                            </div>
+                        </div>
+
+                        <hr class="m-4" />
+
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <label for="business">Business Name</label>
+                                <input type="text" class="form-control form-control-user" id="business" name="business" placeholder="{{ user.business|escape|capitalize }}" value="{{ user.business|escape }}" required="required">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <label for='start_date'>Founding Date</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                    <input type='text' class="form-control" name="opening_date" id='opening_date' placeholder="{{ user.opening_date|escape|capitalize }}" value="{{ user.opening_date|escape }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <label for="industry">What industry do you work in?</label>
+                                <input type="text" class="form-control form-control-user" id="industry" name="industry" placeholder="{{ user.industry|escape|capitalize }}" value="{{ user.industry|escape }}" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <label for="description">Description</label>
+                                <textarea type="text" class="form-control form-control-user" id="description" name="description" placeholder="{{ user.description|escape|capitalize }}">{{ user.description|escape }}</textarea>
+                            </div>
+                        </div>
+                        <hr class="m-4" />
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <label for="address_street">Business Address</label>
+                                <input type="text" class="form-control form-control-user" id="address_street" name="address_street" placeholder="{{ user.address_street|escape|capitalize }}" value="{{ user.address_street|escape|capitalize }}" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control form-control-user" id="city" name="city" placeholder="{{ user.city|escape|capitalize }}" value="{{ user.city|escape }}" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control form-control-user" id="country" name="country" placeholder="{{ user.country|escape|capitalize }}" value="{{ user.country|escape }}" />
+                            </div>
+                        </div>
+                        <hr class="m-4" />
+                        <input type="hidden" value="{{ user.id|e }}" name="uid" id="uid">
+                        <button type="submit" id="submit" class="btn btn-success btn-send mt-3"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Update</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+{% block scripts %}
+    <script nonce="{{ call_nonce('script_nonce', true) }}" type="text/javascript" src="{{ site.url|e }}vendor/moment/moment.min.js"></script>
+    <script nonce="{{ call_nonce('script_nonce', true) }}" type="text/javascript" src="{{ site.url|e }}vendor/datimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script nonce="{{ call_nonce('script_nonce', true) }}" type="text/javascript" src="{{ site.admin|e }}js/profile.min.js"></script>
+{% endblock scripts %}

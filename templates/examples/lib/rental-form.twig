@@ -1,0 +1,376 @@
+{% extends '../dashboard/sb_index.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-4">Welcome to Rent a Vehicle</h1>
+                <p class="lead">Thank you for choosing RAV Rent A Vehicle!</p>
+                <p>Our new website is still under construction and testing, please let us know immediately if you experience any problems whilst using our website via email on <a href="mailto:info@rentavehicle.co.za">info@rentavehicle.co.za</a> or fill in the contact form</p>
+                <p>We are working flatout to perfect everything and apologise for any errors that may occur.</p>
+                <p><strong>Thank you for your patience!</strong></p>
+                <p><a class="btn btn-success" href="{{ site.url }}contact/">Contact Us</a></p>
+            </div>
+        </div>
+    </div>
+<form class=" hidden form-horizontal" action="{{ site.admin }}php/rental-calculator.php" method="post" id="rental-form" role="form" data-toggle="validator">
+    <fieldset>
+        <div class="container">
+            <!-- Form Name -->
+            <legend>Rental Enquiry Form</legend>
+
+            <div class="controls">
+                <!-- Start Date & End Date -->
+                <div class="row mb-3">
+                    <div class='col-md-6'>
+                        <label for='start_date'>Start Date</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            </div>
+                            <input type='text' class="form-control" name="start_date" id='start_date' placeholder="YYYY-MM-DD" />
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='end_date'>End Date</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            </div>
+                            <input type='text' class="form-control" name="end_date" id='end_date' placeholder="YYYY-MM-DD" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Time & End Time -->
+                <div class="row mb-3">
+                    <div class='col-md-6'>
+                        <label for='start_time'>StartTime</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-clock"></i></span>
+                            </div>
+                            <input type='text' class="form-control" name='start_time' id='start_time' placeholder="HH:MM" />
+
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='end_time'>End Time</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-clock"></i></span>
+                            </div>
+                            <input type='text' class="form-control" name='end_time' id='end_time' placeholder="HH:MM" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Rental Location</span>
+                            </div>
+                            <select placeholder="Where do you want to collect the vehicle?" type="text" class="form-control" id="pickup_location" name="pickup_location">
+                                <option value="Alexander Bay">Alexander Bay</option>
+                                <option value="Amanzimtoti">Amanzimtoti</option>
+                                <option value="Bethlehem">Bethlehem</option>
+                                <option value="Bloemfontein">Bloemfontein</option>
+                                <option value="Braamfontein">Braamfontein</option>
+                                <option value="Brakpan">Brakpan</option>
+                                <option value="Bruma">Bruma</option>
+                                <option value="Cape Town International">Cape Town International</option>
+                                <option value="Cape Town Downtown">Cape Town Downtown</option>
+                                <option value="Durban">Durban</option>
+                                <option value="Durban Downtown">Durban Downtown</option>
+                                <option value="East London Airport">East London Airport</option>
+                                <option value="East London Downtown">East London Downtown</option>
+                                <option value="George Airport">George Airport</option>
+                                <option value="George Downtown">George Downtown</option>
+                                <option value="Graaf Reinet">Graaf Reinet</option>
+                                <option value="Grahamstown">Grahamstown</option>
+                                <option value="Harrismith">Harrismith</option>
+                                <option value="Hatfield">Hatfield</option>
+                                <option value="Hermanus">Hermanus</option>
+                                <option value="Isando">Isando</option>
+                                <option value="Jeffreys Bay">Jeffreys Bay</option>
+                                <option value="Johannesburg">Johannesburg</option>
+                                <option value="Kimberley">Kimberley</option>
+                                <option value="King Shaka Airport">King Shaka Airport</option>
+                                <option value="King Williamstown">King Williamstown</option>
+                                <option value="Kruger Mpumalanga Airport">Kruger Mpumalanga Airport</option>
+                                <option value="Knysna">Knysna</option>
+                                <option value="Ladysmith">Ladysmith</option>
+                                <option value="Langebaan">Langebaan</option>
+                                <option value="Lanseria Airport">Lanseria Airport</option>
+                                <option value="Lephalale">Lephalale</option>
+                                <option value="Malelane">Malelane</option>
+                                <option value="Margate">Margate</option>
+                                <option value="Menlyn">Menlyn</option>
+                                <option value="Mmabatho">Mmabatho</option>
+                                <option value="Mthatha Airport">Mthatha Airport</option>
+                                <option value="Midrand">Midrand</option>
+                                <option value="Mosselbay">Mosselbay</option>
+                                <option value="Nelspruit">Nelspruit</option>
+                                <option value="Newcastle">Newcastle</option>
+                                <option value="OR Thambo International">OR Thambo International</option>
+                                <option value="Paarl">Paarl</option>
+                                <option value="Phalaborwa">Phalaborwa</option>
+                                <option value="Pietermartizburg">Pietermartizburg</option>
+                                <option value="Pietersburg">Pietersburg</option>
+                                <option value="Pinetown">Pinetown</option>
+                                <option value="Plettenburg Bay">Plettenburg Bay</option>
+                                <option value="Polokwane">Polokwane</option>
+                                <option value="Port Alfred">Port Alfred</option>
+                                <option value="Port Elizabeth Airport">Port Elizabeth Airport</option>
+                                <option value="Port Elizabeth Downtown">Port Elizabeth Downtown</option>
+                                <option value="Potchefstroom">Potchefstroom</option>
+                                <option value="Pretoria">Pretoria</option>
+                                <option value="Queenstown">Queenstown</option>
+                                <option value="Randburg">Randburg</option>
+                                <option value="Rand Airport">Rand Airport</option>
+                                <option value="Richards Bay">Richards Bay</option>
+                                <option value="Rosebank">Rosebank</option>
+                                <option value="Rustenburg">Rustenburg</option>
+                                <option value="Sandton">Sandton</option>
+                                <option value="Secunda">Secunda</option>
+                                <option value="Skukuza Airport">Skukuza Airport</option>
+                                <option value="Skukuza Downtown">Skukuza Downtown</option>
+                                <option value="Soweto">Soweto</option>
+                                <option value="Somerset West">Somerset West</option>
+                                <option value="Southgate">Southgate</option>
+                                <option value="Springbok">Springbok</option>
+                                <option value="St Lucia">St Lucia</option>
+                                <option value="Strand">Strand</option>
+                                <option value="Sunninghill">Sunninghill</option>
+                                <option value="Tygervalley">Tygervalley</option>
+                                <option value="Tzaneen">Tzaneen</option>
+                                <option value="Ulundi">Ulundi</option>
+                                <option value="Upington">Upington</option>
+                                <option value="Vereeniging">Vereeniging</option>
+                                <option value="Vryheid">Vryheid</option>
+                                <option value="Welkom">Welkom</option>
+                                <option value="Windhoek">Windhoek</option>
+                                <option value="Witbank">Witbank</option>
+                                <option value="Wynberg">Wynberg</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Return Location</span>
+                            </div>
+                            <select placeholder="Where do you want to return the vehicle?" type="text" class="form-control" id="return_location" name="return_location">
+                                <option value="Alexander Bay">Alexander Bay</option>
+                                <option value="Amanzimtoti">Amanzimtoti</option>
+                                <option value="Bethlehem">Bethlehem</option>
+                                <option value="Bloemfontein">Bloemfontein</option>
+                                <option value="Braamfontein">Braamfontein</option>
+                                <option value="Brakpan">Brakpan</option>
+                                <option value="Bruma">Bruma</option>
+                                <option value="Cape Town International">Cape Town International</option>
+                                <option value="Cape Town Downtown">Cape Town Downtown</option>
+                                <option value="Durban">Durban</option>
+                                <option value="Durban Downtown">Durban Downtown</option>
+                                <option value="East London Airport">East London Airport</option>
+                                <option value="East London Downtown">East London Downtown</option>
+                                <option value="George Airport">George Airport</option>
+                                <option value="George Downtown">George Downtown</option>
+                                <option value="Graaf Reinet">Graaf Reinet</option>
+                                <option value="Grahamstown">Grahamstown</option>
+                                <option value="Harrismith">Harrismith</option>
+                                <option value="Hatfield">Hatfield</option>
+                                <option value="Hermanus">Hermanus</option>
+                                <option value="Isando">Isando</option>
+                                <option value="Jeffreys Bay">Jeffreys Bay</option>
+                                <option value="Johannesburg">Johannesburg</option>
+                                <option value="Kimberley">Kimberley</option>
+                                <option value="King Shaka Airport">King Shaka Airport</option>
+                                <option value="King Williamstown">King Williamstown</option>
+                                <option value="Kruger Mpumalanga Airport">Kruger Mpumalanga Airport</option>
+                                <option value="Knysna">Knysna</option>
+                                <option value="Ladysmith">Ladysmith</option>
+                                <option value="Langebaan">Langebaan</option>
+                                <option value="Lanseria Airport">Lanseria Airport</option>
+                                <option value="Lephalale">Lephalale</option>
+                                <option value="Malelane">Malelane</option>
+                                <option value="Margate">Margate</option>
+                                <option value="Menlyn">Menlyn</option>
+                                <option value="Mmabatho">Mmabatho</option>
+                                <option value="Mthatha Airport">Mthatha Airport</option>
+                                <option value="Midrand">Midrand</option>
+                                <option value="Mosselbay">Mosselbay</option>
+                                <option value="Nelspruit">Nelspruit</option>
+                                <option value="Newcastle">Newcastle</option>
+                                <option value="OR Thambo International">OR Thambo International</option>
+                                <option value="Paarl">Paarl</option>
+                                <option value="Phalaborwa">Phalaborwa</option>
+                                <option value="Pietermartizburg">Pietermartizburg</option>
+                                <option value="Pietersburg">Pietersburg</option>
+                                <option value="Pinetown">Pinetown</option>
+                                <option value="Plettenburg Bay">Plettenburg Bay</option>
+                                <option value="Polokwane">Polokwane</option>
+                                <option value="Port Alfred">Port Alfred</option>
+                                <option value="Port Elizabeth Airport">Port Elizabeth Airport</option>
+                                <option value="Port Elizabeth Downtown">Port Elizabeth Downtown</option>
+                                <option value="Potchefstroom">Potchefstroom</option>
+                                <option value="Pretoria">Pretoria</option>
+                                <option value="Queenstown">Queenstown</option>
+                                <option value="Randburg">Randburg</option>
+                                <option value="Rand Airport">Rand Airport</option>
+                                <option value="Richards Bay">Richards Bay</option>
+                                <option value="Rosebank">Rosebank</option>
+                                <option value="Rustenburg">Rustenburg</option>
+                                <option value="Sandton">Sandton</option>
+                                <option value="Secunda">Secunda</option>
+                                <option value="Skukuza Airport">Skukuza Airport</option>
+                                <option value="Skukuza Downtown">Skukuza Downtown</option>
+                                <option value="Soweto">Soweto</option>
+                                <option value="Somerset West">Somerset West</option>
+                                <option value="Southgate">Southgate</option>
+                                <option value="Springbok">Springbok</option>
+                                <option value="St Lucia">St Lucia</option>
+                                <option value="Strand">Strand</option>
+                                <option value="Sunninghill">Sunninghill</option>
+                                <option value="Tygervalley">Tygervalley</option>
+                                <option value="Tzaneen">Tzaneen</option>
+                                <option value="Ulundi">Ulundi</option>
+                                <option value="Upington">Upington</option>
+                                <option value="Vereeniging">Vereeniging</option>
+                                <option value="Vryheid">Vryheid</option>
+                                <option value="Welkom">Welkom</option>
+                                <option value="Windhoek">Windhoek</option>
+                                <option value="Witbank">Witbank</option>
+                                <option value="Wynberg">Wynberg</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cover & Vehicle Group -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="cover">Select Cover</label>
+                            <select id="cover" name="cover" class="form-control">
+                                <option value="super">Super</option>
+                                <option value="standard">Standard</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="vehicle_group">Vehicle Group</label>
+                            <select id="vehicle_group" name="vehicle_group" class="form-control">
+                                <option value="RAV3">RAV3</option>
+                                <option value="RAV4">RAV4</option>
+                                <option value="RAV5">RAV5</option>
+                                <option value="RAV6">RAV6</option>
+                                <option value="RAV13">RAV13</option>
+                                <option value="RAV18">RAV18</option>
+                                <option value="RAV15">RAV15</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check mt-3">
+                            <input type="hidden" value="no" name="additional_drivers" />
+                            <input class="form-check-input" type="checkbox" value="yes" id="additional_drivers" name="additional_drivers" />
+                            <label class="form-check-label" for="additional_drivers">I need an additional driver!</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="hidden" value="no" name="young_driver" />
+                            <input class="form-check-input" type="checkbox" value="yes" id="young_driver" name="young_driver" />
+                            <label class="form-check-label" for="young_driver">I am a young driver driver!</label>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="control-label" for="drivers_number">How many additional drivers</label>
+                            <select class="form-control" id="drivers_number" name="drivers_number">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Additional Drivers -->
+
+                <!-- delivery + collection -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="yes" id="delivery" name="delivery" />
+                            <label class="form-check-label" for="delivery">I need the vehicle to be delivered</label>
+                        </div>
+                        <div id="delivery-area" class="textarea">
+                            <label for="delivery_address">Delivery Address</label>
+                            <textarea class="form-control" type="text" id="delivery_address" name="delivery_address"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="yes" id="collection" name="collection" />
+                            <label class="form-check-label" for="collection">I need the vehicle to be collected</label>
+                        </div>
+                        <div id="collection-area" class="textarea">
+                            <label for="collection_address">Collection Address</label>
+                            <textarea class="form-control" type="text" id="collection_address" name="collection_address"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-check">
+                            <input type="hidden" value="no" name="gps" />
+                            <input class="form-check-input" type="checkbox" value="yes" id="gps" name="gps">
+                            <label class="form-check-label" for="gps">I  want to rent a gps</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="hidden" value="no" name="baby_seat" />
+                            <input class="form-check-input" type="checkbox" value="yes" id="baby_seat" name="baby_seat">
+                            <label class="form-check-label" for="baby_seat">I need a baby seat</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="hidden" value="no" name="tyre_waiver" />
+                            <input class="form-check-input" type="checkbox" value="yes" id="tyre_waiver" name="tyre_waiver">
+                            <label class="form-check-label" for="tyre_waiver">I want the windscreen and tyre cover</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="hidden" value="no" name="usb_charger" />
+                            <input class="form-check-input" type="checkbox" value="yes" id="usb_charger" name="usb_charger">
+                            <label class="form-check-label" for="usb_charger">I would like to rent a usb charger</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment_method" id="credit1" value="credit" checked>
+                            <label class="form-check-label" for="credit1">
+                                Credit Card
+                            </label>
+                        </div>
+                        <div class="form-check">
+
+                            <input class="form-check-input" type="radio" name="payment_method" id="debit2" value="debit">
+                            <label class="form-check-label" for="debit2">
+                                Debit or Cheque Card
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Submit Button -->
+                <div class="row">
+                    <div class="form-group">
+                        <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="messages"></div>
+        </div>
+    </fieldset>
+
+</form>
+{% endblock body %}
+{% block scripts %}
+    <script nonce="{{ call_nonce('rental_script', true) }}" type="text/javascript" src="{{ admin.url }}js/rental-form.min.js"></script>
+{% endblock scripts %}

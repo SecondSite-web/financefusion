@@ -1,0 +1,51 @@
+{% set nav = {
+	contact:    { title: "Contact Us", url: "contact" }
+} %}
+
+
+
+  	<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-static">
+	    <div class="container">
+			<a class="navbar-brand" href="#">
+				<img class="img-fluid logo" src="" alt="Rent a vehicle | Car Rental Agency in South Africa" />
+			</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarResponsive">
+	        <ul class="navbar-nav m-auto">
+	          <li class="nav-item">
+	            <a class="nav-link" href="/">Home
+	              <span class="sr-only">(current)</span>
+	            </a>
+	          </li>
+	          {% for item in nav %}
+		          <li class="nav-item">
+		            <a class="nav-link" href="{{ item.url|escape }}">{{ item.title }}</a>
+		          </li>
+	      	  {% endfor %}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						<i class="fas fa-user"></i>
+					</a>
+					<div class="dropdown-menu">
+                        {% for item in usernav %}
+							<a class="dropdown-item" href="{{ item.url|escape }}">{{ item.title|escape }}</a>
+                        {% endfor %}
+
+						<a class="dropdown-item" href="{{ site.admin|escape }}login/" data-toggle="modal" data-target="#loginModal">
+							<i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+							Login
+						</a>
+
+
+						<a class="dropdown-item" href="">Dashboard</a>
+						<a class="dropdown-item" href="logout.php">Logout</a>
+
+
+					</div>
+				</li>
+	        </ul>
+	      </div>
+	    </div>
+  	</nav>

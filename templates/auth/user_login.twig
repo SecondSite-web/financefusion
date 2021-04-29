@@ -1,0 +1,17 @@
+{% extends 'user_index.twig' %}
+    {% block body %}
+    <form id="login-form" class="user" action="{{ worker }}/login.php" method="post" role="form" data-toggle="validator">
+        <div class="messages"></div>
+        <div class="form-group">
+            <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="email@address.com" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password Please" required="required">
+            <input type="hidden" name="nonce" value="{{ call_nonce('login-form') }}" />
+        </div>
+        <button type="submit" id="submit" class="btn btn-success btn-send">Login</button>
+    </form>
+    {% endblock %}
+    {% block scripts %}
+        <script type="text/javascript" src="{{ site.url }}/js/login.min.js"></script>
+    {% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'index.twig' %}
+{% import 'form_macros.twig' as form %}
+ {% block body %}
+ 	<div class="container align-center pt-3">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="display-3">{{ page.url }}</h1>
+				<div id="cf-wrapper">
+					<div class="contact-block mt-4 bg-dark text-white p-5 mb-3 shadow-sm">
+						<h4>Please fill in the contact form below and we will get back to you shortly</h4>
+						<br />
+						<form id="contact-form" method="post" action="{{ site.worker }}/open-ticket.php" role="form">
+							<div class="messages"></div>
+							<div class="controls">
+								<div class="form-row">
+									<div class="col-md-6">
+										{{  form.inputLabelled('firstname', 'First Name', 'Please enter your first name', '1') }}
+									</div>
+									<div class="col-md-6">
+										{{  form.inputLabelled('lastname', 'Last Name', 'Please enter your last name', '2') }}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										{{  form.inputLabelled('email', 'Email Address', 'Please enter your email address', '3') }}
+									</div>
+									<div class="col-md-6">
+										{{  form.inputLabelled('telephone', 'Telephone Number', 'Please enter your telephone number', '4') }}
+									</div>
+									<div class="form-group mail-set">
+										<label for="form_phone">Phone</label>
+										<input autocomplete="off" id="phone" type="tel" name="phone" class="form-control" placeholder="Please enter your phone" tabindex="6">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										{{ form.textarea('message', 'Please leave us a short message', '4') }}
+										<input type="hidden" name="nonce" value="{{ call_nonce('contact-form') }}" />
+										<input type="hidden" name="status" value="submitted" />
+									</div>
+									<div class="col-md-12">
+										<button class="btn btn-success" type="submit" name="submit" id="submit_button">Submit</button>
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<p class="text-white-50"><strong>*</strong> These fields are required.</p>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+ {% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="/js/contact.min.js"></script>
+{% endblock scripts %}

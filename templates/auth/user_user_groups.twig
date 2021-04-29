@@ -1,0 +1,170 @@
+{% extends 'sb_index.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Add a Group</h6>
+                </div>
+                <div class="card-body">
+                    <form id="add-group-form" class="user" action="{{ site.worker }}/add-group.php" method="post" role="form" data-toggle="validator">
+                        <div class="messages"></div>
+                        <div class="form-group input-group-sm row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="groupName">Group Name</label>
+                                <input type="text" class="form-control input-sm form-control-user"  id="groupName" name="groupName" required>
+                                <input type="hidden" name="nonce" value="{{ call_nonce('add-group-form') }}" />
+                            </div>
+                        </div>
+                        <button type="submit" id="submit" class="btn btn-sm btn-success btn-send mt-1"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Add Group</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Groups List</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+                      <table id="dataTable" class="table table-striped table-sm">
+                          <thead>
+                            <tr>
+                                <th>User Groups</th>
+                                <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for group in userGroups %}
+                            <tr>
+                                <td>{{ group.user_group|capitalize|e }}</td>
+                                <td>
+                                    <form class="delete-group-forms" id="delete-group{{ group.id }}" role="form" method="post" action="{{ site.worker }}/delete-group.php">
+                                        <input type="hidden" name="nonce" value="{{ call_nonce('delete-group-form') }}" />
+                                        <input type="hidden" name="groupName" value="{{ group.user_group|capitalize|e }}">
+                                        <button type="submit" id="submit" class="btn btn-sm btn-success btn-send"><i class="fas fa-trash fa-sm fa-fw text-gray-400"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow mt-2">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Users per Group</h6>
+                </div>
+                <div class="card-body">
+                {% for group in userGroups %}
+                <h5>{{ group.user_group|capitalize|e }}</h5>
+                <div class="table-responsive-sm">
+                    <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th class="col-md-5">Name:</th>
+                            <th class="col-md-5">Email:</th>
+                            <th class="col-md-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for userLoop in users %}
+                            {% if group.id == userLoop.usergroup %}
+
+                            <tr>
+                                <td class="col-md-5">{{ userLoop.firstname }} {{ userLoop.lastname }}</td>
+                                <td class="col-md-5">{{ userLoop.email }}</td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal{{ group.id }}{{ userLoop.id }}">
+                                      <i class="fa fa-sm fa-gears"></i>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{ group.id }}{{ userLoop.id }}" tabindex="-1" aria-labelledby="modal{{ group.id }}{{ userLoop.id }}Label" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="modal{{ group.id }}{{ userLoop.id }}Label">User Quick Edit</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form id="edit-user-form{{ group.id }}{{ userLoop.id }}" class="user-edit mt-4" action="{{ site.worker }}/edit-user.php" method="post" role="form" data-toggle="validator">
+                                                <div class="messages"></div>
+                                                <div class="form-group row">
+                                                    <input type="hidden" id="user_id" name="user_id" value="{{ userLoop.id }}" required>
+
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <label for="firstname">First Name</label>
+                                                        <input type="text" class="form-control form-control-user"  id="firstname" name="firstname" placeholder="{{ userLoop.firstname }}" value="{{ userLoop.firstname }}" required>
+                                                    </div>
+                                                    <div class="col-sm-6 mb-3">
+                                                        <label for="lastname">Last Name</label>
+                                                        <input type="text" class="form-control form-control-user" id="lastname" name="lastname" placeholder="{{ userLoop.lastname }}" value="{{ userLoop.lastname }}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <div class="col-sm-6">
+                                                        <label for="phone">Phone Number</label>
+                                                        <input type="hidden" name="nonce" value="{{ call_nonce('edit-user-form') }}" />
+                                                        <input type="text" class="form-control form-control-user" id="phone" name="phone" placeholder="{{ userLoop.phone }}" value="{{ userLoop.phone }}" required>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label for="email">Email Address</label>
+                                                        <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="{{ userLoop.email }}" value="{{ userLoop.email }}" required>
+                                                    </div>
+                                                </div>
+
+                                                <hr class="m-4" />
+                                                <div class="form-group row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label for="user_group">User Group</label>
+                                                        <select class="form-control form-control-sm" name="user_group" id="user_group">
+                                                          {% for group in userGroups %}
+                                                              <option value="{{ group.id|e }}" {% if userLoop.usergroup == group.id %}selected{% endif %}>{{ group.user_group|capitalize|e }}</option>
+                                                          {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="user_group">User Role</label>
+                                                        <select class="form-control form-control-sm" name="user_role" id="user_role">
+                                                            {% for role in userRoles %}
+                                                                <option value="{{ role.userrole|e }}" {% if role.userrole == userLoop.userrole %}selected{% endif %}>{{ role.userrole|capitalize|e }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                 <hr class="m-4" />
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" id="submit" class="btn btn-success btn-send"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Update</button>
+                                                  </div>
+                                            </form>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ site.url|e }}/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ site.url|e }}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="{{ site.url|e }}/js/user-groups.min.js"></script>
+{% endblock scripts %}

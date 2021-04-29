@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/string" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/felixfbecker/language-server-protocol" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/dnoegel/php-xdg-base-dir" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/openlss/lib-array2xml" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/netresearch/jsonmapper" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/friendsofphp/php-cs-fixer" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/amphp/amp" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/php-cs-fixer/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/amphp/byte-stream" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/phpdocumentor/reflection-common" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/phpdocumentor/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/webmozart/path-util" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/squizlabs/php_codesniffer" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/config" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/phpstan/phpstan" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/dependency-injection" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/pdepend/pdepend" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/phpmd/phpmd" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/vimeo/psalm" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/options-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/polyfill-php72" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/polyfill-php73" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/process" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/symfony/stopwatch" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/felixfbecker/advanced-json-rpc" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/vendor/phpunit/php-timer" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

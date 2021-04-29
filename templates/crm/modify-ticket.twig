@@ -1,0 +1,58 @@
+{% import 'form_macros.twig' as form %}
+<div class="modal fade" id="modifyModal{{ ticket.ticket_id }}" tabindex="-1" role="dialog" aria-labelledby="modifyModal{{ ticket.ticket_id }}Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary font-weight-bold" id="modifyModal{{ ticket.ticket_id }}Label">Modify Ticket #{{ ticket.ticket_id }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <form class="modify-submit" id="modify-ticket-form{{ ticket.ticket_id }}" method="post" action="{{ site.worker }}/modify-ticket.php" role="form">
+                            <div class="messages"></div>
+                            <div class="controls">
+                                <div class="form-group">
+                                    <label for="dest_group">User Group</label>
+                                    <select class="form-control form-control-sm" name="dest_group" id="dest_group">
+                                        {% for group in userGroups %}
+                                            <option value="{{ group.id|e }}"{% if ticket.dest_group == group.id %} selected{% endif %}>{{ group.user_group|capitalize|e }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="priority">Priority</label>
+                                    <select class="form-control form-control-sm" name="priority" id="priority">
+                                        <option value="high"{% if ticket.priority == 'high' %} selected{% endif %}>High</option>
+                                        <option value="medium"{% if ticket.priority == 'medium' %} selected{% endif %}>Medium</option>
+                                        <option value="low"{% if ticket.priority == 'low' %} selected{% endif %}>Low</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="priority">Status</label>
+                                    <select class="form-control form-control-sm" name="status" id="status">
+                                        <option value="open"{% if ticket.status == 'open' %} selected{% endif %}>Open</option>
+                                        <option value="pending"{% if ticket.status == 'pending' %} selected{% endif %}>Pending</option>
+                                        <option value="escalated"{% if ticket.status == 'escalated' %} selected{% endif %}>Escalated</option>
+                                        <option value="resolved"{% if ticket.status == 'resolved' %} selected{% endif %}>Resolved</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="nonce" value="{{ call_nonce('modify-ticket-form') }}" />
+                                    {{  form.inputHidden('user_id', user.id) }}
+                                    {{  form.inputHidden('ticket_id', ticket.ticket_id) }}
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-success" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

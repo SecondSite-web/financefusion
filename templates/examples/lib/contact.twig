@@ -1,0 +1,36 @@
+{% extends 'index.twig' %}
+
+{% import 'form_macros.twig' as form %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>Contact</h1>
+                <p>Below is an example of how to build a form using Twig Macros. The Macros are written in 'form_inputs.twig.</p>
+                <ul>
+                    <li>input</li>
+                    <li>inputLabelled</li>
+                    <li>inputAppend</li>
+                    <li>inputPreprend</li>
+                    <li>textarea</li>
+                </ul>
+                <p>You can write custom macro's for form fields not included, or just add the form input field html to the macro list.<br />"input(name, label, placeholder = null, options = []" - This is the value list passed to the input macro to generate the field parameters. </p>
+
+                <form action="" method="post" id="" role="form" data-toggle="validator">
+                    {{ form.input('name', 'Your name', 'Harry', {class: 'superclass'}) }}
+                    {{ form.inputLabelled('name', 'Your name', 'Harry', {class: 'superclass'}) }}
+                    {{ form.inputPrepend('name', 'Your name', 'placeholder', {class: 'superclass', require: 'required'}) }}
+                    {{ form.inputAppend('name', 'Your name', 'placeholder', {class: 'superclass', require: 'required'}) }}
+                    {{ form.input('email', 'Email', 'email@address.com') }}
+                    {{ form.textarea('message', 'Message') }}
+                    <div class="form-group">
+                        <button type="submit" id="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+

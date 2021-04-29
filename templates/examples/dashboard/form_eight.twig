@@ -1,0 +1,71 @@
+{% extends 'sb_index.twig' %}
+{%  block head %}
+    <link href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" rel="stylesheet">
+{% endblock head %}
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="d-sm-flex align-items-center justify-content-between mb-1">
+                <h6 class="m-0 font-weight-bold text-primary">{{ page.title }}</h6>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="alerts"></div>
+            <div class="table-responsive">
+                <table id="dataTable" class="table table-striped nf-form-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Telephone</th>
+                        <th>Street Address</th>
+                        <th>Complex</th>
+                        <th>Suburb</th>
+                        <th>Town</th>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>Country</th>
+                        <th>Occupation</th>
+                        <th>WhatsApp</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for r in tbody %}
+                        <tr>
+                            <td>{{ r.seq_num|capitalize|escape }}</td>
+                            <td>{{ r.post_date|capitalize|escape }}</td>
+                            <td>{{ r.first_name|capitalize|escape }}</td>
+                            <td>{{ r.last_name|capitalize|escape }}</td>
+                            <td>{{ r.telephone|capitalize|escape }}</td>
+                            <td>{{ r.street_address|capitalize|escape }}</td>
+                            <td>{{ r.complex|capitalize|escape }}</td>
+                            <td>{{ r.suburb|capitalize|escape }}</td>
+                            <td>{{ r.town|capitalize|escape }}</td>
+                            <td>{{ r.region|capitalize|escape }}</td>
+                            <td>{{ r.province|capitalize|escape }}</td>
+                            <td>{{ r.country|capitalize|escape }}</td>
+                            <td>{{ r.occupation|capitalize|escape }}</td>
+                            <td>{{ r.whatsapp|capitalize|escape }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+{% block scripts %}
+    <script nonce="{{ call_nonce('datatables_nonce', true) }}" type="text/javascript" src="{{ site.url }}vendor/datatables/jquery.dataTables.min.js"></script>
+    <script nonce="{{ call_nonce('bootstrap_nonce', true) }}" type="text/javascript" src="{{ site.url }}vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script nonce="{{ call_nonce('dt_buttons_nonce', true) }}" src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script nonce="{{ call_nonce('jszip_nonce', true) }}" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script nonce="{{ call_nonce('pdfmake_nonce', true) }}" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script nonce="{{ call_nonce('pdfmakefonts_nonce', true) }}" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script nonce="{{ call_nonce('buttons_html_nonce', true) }}" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+    <script nonce="{{ call_nonce('buttons_print_nonce', true) }}" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+    <script nonce="{{ call_nonce('export_datatables', true) }}" type="text/javascript" src="{{ site.admin }}js/cf-table.min.js"></script>
+{% endblock scripts %}

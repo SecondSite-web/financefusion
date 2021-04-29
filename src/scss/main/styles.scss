@@ -1,0 +1,11 @@
+// Custom Styles
+// Import Bootstrap
+@import "vendor/bootstrap/scss/bootstrap";
+// Import fontawesome
+@import "vendor/fontawesome/scss/fontawesome";
+@import "vendor/fontawesome/scss/regular";
+@import "vendor/fontawesome/scss/solid";
+@import "vendor/fontawesome/scss/brands";
+@import "vendor/fontawesome/scss/v4-shims";
+// import custom styles and overrides
+@import "_custom.scss";

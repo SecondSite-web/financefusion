@@ -1,0 +1,105 @@
+<!-- Sidebar -->
+    <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ site.admin }}">
+        <div class="sidebar-brand-icon">
+          <img class="img-fluid logo" src="#" alt="Omnia Paratus Logo" />
+        </div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Heading -->
+      {% if (user.userrole == 'guest') or (user.userrole == 'admin')  %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ site.url }}">
+          <i class="fas fa-fw fa-info-circle"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      {% endif %}
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Form Data
+      </div>
+      {% if (user.userrole == 'boere') or (user.userrole == 'guest') or (user.userrole == 'admin')  %}
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ site.admin }}boerevolk-reddings-aksie.php">
+          <i class="fas fa-fw fa-info-circle"></i>
+          <span>Boerevolk Reddings Aksie</span></a>
+      </li>
+      {% endif %}
+      {% if (user.userrole == 'nginguye') or (user.userrole == 'guest') or (user.userrole == 'admin')  %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ site.admin }}nginguye-i-am.php">
+          <i class="fas fa-fw fa-info-circle"></i>
+          <span>Nginnguye I Am</span></a>
+      </li>
+      {% endif %}
+      {% if (user.userrole == 'vroue') or (user.userrole == 'guest') or (user.userrole == 'admin')  %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ site.admin }}vroue-krag-sa.php">
+          <i class="fas fa-fw fa-info-circle"></i>
+          <span>Vrouekrag SA</span></a>
+      </li>
+      {% endif %}
+      {% if (user.userrole == 'people') or (user.userrole == 'guest') or (user.userrole == 'admin') %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ site.admin }}we-the-people.php">
+          <i class="fas fa-fw fa-info-circle"></i>
+          <span>We-the-people</span></a>
+      </li>
+      {% endif %}
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        My Account
+      </div>
+
+      <!-- Nav Item - User Profile -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ site.admin }}account/">
+          <i class="fas fa-fw fa-user-astronaut"></i>
+          <span>Account</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+
+
+      {% if user.userrole == 'admin' %}
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          Admin Functions
+        </div>
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ site.admin }}users-table.php">
+          <i class="fas fa-fw fa-users"></i>
+          <span>User Accounts</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ site.admin }}add-new-user.php">
+          <i class="fas fa-fw fa-envelope-open"></i>
+          <span>Add User</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      {% endif %}
+
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->

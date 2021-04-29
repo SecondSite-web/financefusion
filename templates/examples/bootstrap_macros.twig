@@ -1,0 +1,34 @@
+{% macro popover(title, content) %}
+<a class="hosting-popover" data-toggle="popover"
+   title="{{ title }}"
+   data-content="{{ content }}">
+    {{ title }}
+</a>
+{% endmacro popover %}
+
+{% macro modaltrigger(id,text) %}
+<a class="modal-trigger" href="#" data-toggle="modal" data-target="#{{id}}">
+    {{text}}
+</a>
+{% endmacro modal %}
+
+{% macro modal(id, aria, title, content) %}
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="{{aria}}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{aria}}">{{title}}</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ content }}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro modal %}

@@ -1,0 +1,99 @@
+{% macro input(name, label, placeholder = null, options = []) %}
+    <div class="form-group {{ options.class }}">
+        <input placeholder="{{ placeholder }}" type="{{ name == 'email' ? 'email' : 'text' }}" class="form-control" id="{{ name }}" name="{{ name }}" {{ options.require }}>
+    </div>
+{% endmacro input %}
+
+{% macro inputHidden(name, value) %}
+    <input type="hidden" name="{{ name }}" value="{{ value }}" />
+{% endmacro inputHidden %}
+
+{% macro inputLabelled(name, label, placeholder = null, tab, options = []) %}
+    <div class="form-group {{ options.class }}">
+        <label for="{{ name }}">{{ label }}</label>
+        <input placeholder="{{ placeholder }}" type="{{ name == 'email' ? 'email' : 'text' }}" class="form-control" id="{{ name }}" name="{{ name }}" tabindex="{{ tab }}" required />
+    </div>
+{% endmacro inputLabelled %}
+
+{% macro inputLabelledn(name, label, placeholder = null, tab, options = []) %}
+    <div class="form-group {{ options.class }}">
+        <label for="{{ name }}">{{ label }}</label>
+        <input placeholder="{{ placeholder }}" type="{{ name == 'email' ? 'email' : 'text' }}" class="form-control" id="{{ name }}" name="{{ name }}" tabindex="{{ tab }}" />
+    </div>
+{% endmacro inputLabelledn %}
+
+{% macro inputAppend(name, label, placeholder = null, options = []) %}
+    <div class="input-group mb-3 {{ options.class }}">
+        <input placeholder="{{ placeholder }}" type="{{ name == 'email' ? 'email' : 'text' }}" class="form-control" id="{{ name }}" name="{{ name }}" {{ options.require }}>
+		<div class="input-group-append">
+            <span class="input-group-text">{{ placeholder }}</span>
+        </div>    
+    </div>
+{% endmacro inputAppend %}
+
+{% macro inputPrepend(name, label, placeholder = null, options = []) %}
+    <div class="input-group mb-3 {{ options.class }}">
+        <div class="input-group-prepend">
+            <span class="input-group-text">{{ placeholder }}</span>
+        </div>
+        <input placeholder="{{ placeholder }}" type="{{ name == 'email' ? 'email' : 'text' }}" class="form-control" id="{{ name }}" name="{{ name }}" required />
+    </div>
+{% endmacro inputPrepend %}
+
+{% macro textarea(name, label, tab, placeholder = null, options = []) %}
+    <div class="form-group {{ options.class }}">
+        <label for="{{ name }}">{{ label }}</label>
+        <textarea type="text" class="form-control" id="{{ name }}" name="{{ name }}" tabindex="{{ tab }}"></textarea>
+    </div>
+{% endmacro textarea %}
+
+{% macro checkbox(name, label) %}
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" id="{{ name }}" name="{{ name }}">
+    <label class="form-check-label" for="{{ name }}">{{ label }}</label>
+</div>
+{% endmacro checkbox %}
+
+{% macro submit(type, tab) %}
+    <button id="submit" name="submit" class="btn btn-{{type|escape}}" tabindex="{{ tab }}" value="Submit">Submit</button>
+{% endmacro submit %}
+
+{% macro dateTime(date, time) %}
+<div class="input-group">
+    <div class="input-group-prepend">
+        <input type='text' class="form-control" name="{{date}}" id='{{date}}' placeholder="YYYY-MM-DD" />
+        <span class="input-group-addon">
+            <span><i class="fa fa-calendar"></i></span>
+        </span>
+    </div>
+    <input type='text' class="form-control" name='{{time}}' id='{{time}}' placeholder="HH:MM" />
+    <span class="input-group-addon">
+        <span><i class="fa fa-clock"></i></span>
+    </span>
+</div>
+{% endmacro dateTime %}
+
+{% macro dateTimex(date, time, dateLabel, timeLabel) %}
+<div class="form-row">
+    <div class="col-6 mb-3">
+        <label for="{{date}}">{{dateLabel}}</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend"><span><i class="fa fa-calendar"></i></span></span>
+            </div>
+            <input type='text' class="form-control" name="{{date}}" id='{{date}}' placeholder="YYYY-MM-DD" />
+        </div>
+    </div>
+    <div class="col-6 mb-3">
+        <label for="{{ time }}">{{ timeLabel }}</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend"><span><i class="fa fa-clock"></i></span></span>
+            </div>
+            <input type='text' class="form-control" name='{{time}}' id='{{time}}' placeholder="HH:MM" />
+        </div>
+    </div>
+</div>
+{% endmacro dateTimex %}
+
+

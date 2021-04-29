@@ -1,0 +1,48 @@
+{% extends 'index.twig' %}
+{% block body %}
+    <div class="tabtab"><!-- Nav tabs -->
+        <ul class="nav nav-tabs text-center small">
+            <li class="nav-item active w-25"><a class="nav-link" href="#tab-one" data-toggle="tab">01 MAY 2020 - 30 SEPTEMBER 2020</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab-one" class="tab-pane active">
+                <div class="tabtab"><!-- Nav tabs -->
+                    <ul class="nav nav-tabs text-center small">
+                        <li class="active nav-item w-50"><a class="nav-link" href="#standard" data-toggle="tab">Standard Cover</a></li>
+                        <li class="nav-item w-50"><a class="nav-link" href="#super" data-toggle="tab">Super Cover</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div id="standard" class="tab-pane active">
+                            <div class="table-responsive">
+                                <table class="table small table-bordered">
+                                    <thead id="lineargradient" class="rateshead">
+                                    <tr>
+                                        <th>GRP</th>
+                                        <th>1-3 Days <small>per day</small></th>
+                                        <th>4-14 Days <small>per day</small></th>
+                                        <th>15 + Days <small>per day</small></th>
+                                        <th>Excess - <small>Non Waiverable</small></th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody class="ratesbody">
+                                    {% for x in table_nine %}
+                                        <tr>
+                                            <td>{{ x.vehicle_group|upper|escape }}</td>
+                                            <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                            <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                            <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                            <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

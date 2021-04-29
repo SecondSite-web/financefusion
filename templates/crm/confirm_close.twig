@@ -1,0 +1,36 @@
+{% import 'form_macros.twig' as form %}
+<div class="modal fade" id="confirmModal{{ ticket.ticket_id }}" tabindex="-1" role="dialog" aria-labelledby="confirmModal{{ ticket.ticket_id }}Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary font-weight-bold" id="confirmModal{{ ticket.ticket_id }}Label">Confirm Closing of Ticket #{{ ticket.ticket_id }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <form class="confirm-close-submit" id="confirm-ticket-form{{ ticket.ticket_id }}" method="post" action="{{ site.worker }}/confirm-close-ticket.php" role="form">
+                            <div class="messages"></div>
+                            <div class="controls">
+                                <div class="form-row">
+                                    <p class="lead text-danger">Please confirm you wish to close this ticket!</p>
+                                    <input type="hidden" name="nonce" value="{{ call_nonce('confirm-close-ticket-form') }}" />
+                                    {{ form.inputHidden('user_id', user.id) }}
+                                    {{ form.inputHidden('ticket_id', ticket.ticket_id) }}
+                                    {{ form.inputHidden('status', 'closed') }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-warning" type="submit" name="submit"><i class="fa fa-warning"></i> Confirm</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,577 @@
+{% extends 'index.twig' %}
+{% block body %}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12 rates">
+                <div class="text-white bg-primary p-5 shadow-sm mb-3">
+                    <h1>Daily Rates <small>South Africa Nationwide</small></h1>
+                    <h2 class="hide">Car Rental Rates</h2>
+
+                    <ul class="list-unstyled doublespace icon-list checkmark">
+                        <li>Currency: South African Rand <strong>ZAR</strong></li>
+                        <li>Rates include VAT at 15%</li>
+                        <li>Rates include 300km p/d</li>
+                        <li>Lowest Liability / Excess Amounts</li>
+                        <li><strong>Rates based on availability</strong></li>
+                    </ul>
+                </div>
+                <div class="text-center">
+                    <hr>
+                    <p class="lead">Please <a href="http://www.rentavehicle.co.za/contact-us/"><strong>contact us</strong></a> for rates or for vehicles that do not appear on the fleet list as we will try to source for you</p>
+                    <hr>
+                </div>
+                <div class="table-responsive">
+                    <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                        <thead id="lineargradient" class="rateshead">
+                        <tr>
+                            <th>GRP</th>
+                            <th>Car Type<br> <strong>or similar</strong></th>
+                            <th>EC</th>
+                            <th>S</th>
+                            <th>D</th>
+                            <th>A/C</th>
+                            <th>R/T</th>
+                            <th>A/B</th>
+                            <th>P/S</th>
+                            <th>M/A</th>
+                        </tr>
+                        </thead>
+                        <tbody class="ratesbody">
+                        <tr>
+                            <td>RAV3</td>
+                            <td>Chev Spark</td>
+                            <td>1</td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>M</td>
+                        </tr>
+                        <tr>
+                            <td>RAV4</td>
+                            <td>Hyundai I20</td>
+                            <td>1.4</td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>M</td>
+                        </tr>
+                        <tr>
+                            <td>RAV5</td>
+                            <td>Polo Vivo Sedan</td>
+                            <td>1.4</td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>M</td>
+                        </tr>
+                        <tr>
+                            <td>RAV6</td>
+                            <td>Nissan Almera Auto</td>
+                            <td>1.5</td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>A</td>
+                        </tr>
+                        <tr>
+                            <td>RAV18</td>
+                            <td>Toyota Avanza</td>
+                            <td>1.5</td>
+                            <td>7</td>
+                            <td>5</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>M</td>
+                        </tr>
+                        <tr>
+                            <td>RAV13</td>
+                            <td>Hyundai H1</td>
+                            <td>2.4</td>
+                            <td>8</td>
+                            <td>4</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>M</td>
+                        </tr>
+                        <tr>
+                            <td>RAV15</td>
+                            <td>Toyota Hilux 2.0 VVTI</td>
+                            <td>2.0</td>
+                            <td>5</td>
+                            <td>5</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>M</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tabtab"><!-- Nav tabs -->
+                    <ul class="nav nav-tabs text-center small">
+                        <li class="nav-item active w-25"><a class="nav-link" href="#tabone" data-toggle="tab">16 April 2020 - 31 August 2020</a></li>
+                        <li class="nav-item w-25"><a class="nav-link" href="#tabtwo" data-toggle="tab">01 September 2020 - 10 December 2020</a></li>
+                        <li class="nav-item w-25"><a class="nav-link" href="#tabthree" data-toggle="tab">11 December 2020 - 02 January 2021</a></li>
+                        <li class="nav-item w-25"><a class="nav-link" href="#tabfour" data-toggle="tab">03 January 2021 - 31 March 2021</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div id="tabone" class="tab-pane active">
+                            <div class="tabtab"><!-- Nav tabs -->
+                                <ul class="nav nav-tabs text-center small">
+                                    <li class="active nav-item w-50"><a class="nav-link" href="#standard" data-toggle="tab">Standard Cover</a></li>
+                                    <li class="nav-item w-50"><a class="nav-link" href="#super" data-toggle="tab">Super Cover</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="standard" class="tab-pane active">
+                                        <div class="table-responsive">
+                                            <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                                                <thead id="lineargradient" class="rateshead">
+                                                <tr>
+                                                    <th>GRP</th>
+                                                    <th>1-3 Days <small>per day</small></th>
+                                                    <th>4-9 Days <small>per day</small></th>
+                                                    <th>10-30 Days <small>per day</small></th>
+                                                    <th>31 Days+ <small>per day</small></th>
+                                                    <th>Excess - <small>Non Waiverable</small></th>
+                                                    <th>Extra Mileage</th>
+
+                                                </tr>
+                                                </thead>
+
+                                                <tbody class="ratesbody">
+                                                    {% for x in table_two %}
+                                                    <tr>
+                                                        <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                        <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_4|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.mileage_cost|upper|escape }} p/km</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- New Tab -->
+                                    <div id="super" class="tab-pane">
+                                        <div class="table-responsive">
+                                            <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                                                <thead id="lineargradient" class="rateshead">
+                                                <tr>
+                                                    <th>GRP</th>
+                                                    <th>1-3 Days <small>per day</small></th>
+                                                    <th>4-9 Days <small>per day</small></th>
+                                                    <th>10-30 Days <small>per day</small></th>
+                                                    <th>31 Days+ <small>per day</small></th>
+                                                    <th>Excess - <small>Non Waiverable</small></th>
+                                                     <th>Extra Mileage</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ratesbody">
+                                                {% for x in table_six %}
+                                                    <tr>
+                                                        <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                        <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_4|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.mileage_cost|upper|escape }} p/km</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Close New Tab -->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tabtwo" class="tab-pane">
+                            <div class="tabtab"><!-- Nav tabs -->
+                                <ul class="nav nav-tabs text-center small">
+                                    <li class="active nav-item w-50"><a class="nav-link" href="#standard1" data-toggle="tab">Standard Cover</a></li>
+                                    <li class="nav-item w-50"><a class="nav-link" href="#super1" data-toggle="tab">Super Cover</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="standard1" class="tab-pane active">
+                                        <div class="table-responsive">
+                                            <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                                                <thead id="lineargradient" class="rateshead">
+                                                <tr>
+                                                    <th>GRP</th>
+                                                    <th>1-3 Days <small>per day</small></th>
+                                                    <th>4-9 Days <small>per day</small></th>
+                                                    <th>10-30 Days <small>per day</small></th>
+                                                    <th>31 Days+ <small>per day</small></th>
+                                                    <th>Excess - <small>Non Waiverable</small></th>
+                                                    <th>Extra Mileage</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ratesbody">
+                                                {% for x in table_one %}
+                                                    <tr>
+                                                        <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                        <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_4|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.mileage_cost|upper|escape }} p/km</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- New Tab -->
+                                    <div id="super1" class="tab-pane">
+                                        <div class="table-responsive">
+                                            <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                                                <thead id="lineargradient" class="rateshead">
+                                                <tr>
+                                                    <th>GRP</th>
+                                                    <th>1-3 Days <small>per day</small></th>
+                                                    <th>4-9 Days <small>per day</small></th>
+                                                    <th>10-30 Days <small>per day</small></th>
+                                                    <th>31 Days+ <small>per day</small></th>
+                                                    <th>Excess - <small>Non Waiverable</small></th>
+                                                     <th>Extra Mileage</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ratesbody">
+                                                {% for x in table_five %}
+                                                    <tr>
+                                                        <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                        <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_4|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.mileage_cost|upper|escape }} p/km</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Close New Tab -->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tabthree" class="tab-pane">
+                            <div class="tabtab"><!-- Nav tabs -->
+                                <ul class="nav nav-tabs text-center small">
+                                    <li class="active nav-item w-50"><a class="nav-link" href="#standard2" data-toggle="tab">Standard Cover</a></li>
+                                    <li class="nav-item w-50"><a class="nav-link" href="#super2" data-toggle="tab">Super Cover</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="standard2" class="tab-pane active">
+                                        <div class="table-responsive">
+                                            <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                                                <thead id="lineargradient" class="rateshead">
+                                                <tr>
+                                                    <th>GRP</th>
+                                                    <th>1-3 Days <small>per day</small></th>
+                                                    <th>4-9 Days <small>per day</small></th>
+                                                    <th>10-30 Days <small>per day</small></th>
+                                                    <th>31 Days+ <small>per day</small></th>
+                                                    <th>Excess - <small>Non Waiverable</small></th>
+                                                     <th>Extra Mileage</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ratesbody">
+                                                {% for x in table_three %}
+                                                    <tr>
+                                                        <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                        <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_4|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.mileage_cost|upper|escape }} p/km</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- New Tab -->
+                                    <div id="super2" class="tab-pane">
+                                        <div class="table-responsive">
+                                            <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                                                <thead id="lineargradient" class="rateshead">
+                                                <tr>
+                                                    <th>GRP</th>
+                                                    <th>1-3 Days <small>per day</small></th>
+                                                    <th>4-9 Days <small>per day</small></th>
+                                                    <th>10-30 Days <small>per day</small></th>
+                                                    <th>31 Days+ <small>per day</small></th>
+                                                    <th>Excess - <small>Non Waiverable</small></th>
+                                                     <th>Extra Mileage</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ratesbody">
+                                                {% for x in table_seven %}
+                                                    <tr>
+                                                        <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                        <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_4|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.mileage_cost|upper|escape }} p/km</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Close New Tab -->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tabfour" class="tab-pane">
+                            <div class="tabtab"><!-- Nav tabs -->
+                                <ul class="nav nav-tabs text-center small">
+                                    <li class="active nav-item w-50"><a class="nav-link" href="#standard3" data-toggle="tab">Standard Cover</a></li>
+                                    <li class="nav-item w-50"><a class="nav-link" href="#super3" data-toggle="tab">Super Cover</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="standard3" class="tab-pane active">
+                                        <div class="table-responsive">
+                                            <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                                                <thead id="lineargradient" class="rateshead">
+                                                <tr>
+                                                    <th>GRP</th>
+                                                    <th>1-3 Days <small>per day</small></th>
+                                                    <th>4-9 Days <small>per day</small></th>
+                                                    <th>10-30 Days <small>per day</small></th>
+                                                    <th>31 Days+ <small>per day</small></th>
+                                                    <th>Excess - <small>Non Waiverable</small></th>
+                                                    <th>Extra Mileage</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ratesbody">
+                                                {% for x in table_four %}
+                                                    <tr>
+                                                        <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                        <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_4|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.mileage_cost|upper|escape }} p/km</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- New Tab -->
+                                    <div id="super3" class="tab-pane">
+                                        <div class="table-responsive">
+                                            <table class="table small table-bordered shadow-sm bg-white table-striped table-hover">
+                                                <thead id="lineargradient" class="rateshead">
+                                                <tr>
+                                                    <th>GRP</th>
+                                                    <th>1-3 Days <small>per day</small></th>
+                                                    <th>4-9 Days <small>per day</small></th>
+                                                    <th>10-30 Days <small>per day</small></th>
+                                                    <th>31 Days+ <small>per day</small></th>
+                                                    <th>Excess - <small>Non Waiverable</small></th>
+                                                     <th>Extra Mileage</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ratesbody">
+                                                {% for x in table_eight %}
+                                                    <tr>
+                                                        <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                        <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.day_rate_4|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                                        <td>R {{ x.mileage_cost|upper|escape }} p/km</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Close New Tab -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-white bg-primary p-5 shadow-sm mb-2">
+                            <h3 class="hide">Unlimited km Rates <small>selective availability only</small></h3>
+                            <h4>The following rates include:</h4>
+                            <ul class="list-unstyled doublespace icon-list checkmark">
+                                <li>Rates include VAT at 15%</li>
+                                <li>Rates include Unlimited Km's</li>
+                                <li>Lowest Liability / Excess Amounts</li>
+                                <li>9% Airport and City Surcharge</li>
+                                <li>Contract Fee</li>
+                                <li>1 x Additional Driver</li>
+                                <li>One Way drop off within the same city</li>
+                                <li>One Cross Border Letter Fee</li>
+                            </ul>
+                        </div>
+                        <hr />
+
+                        <ul class="nav nav-tabs text-center small">
+                            <li class="nav-item active w-25"><a class="nav-link" href="#super-one" data-toggle="tab">01 May 2020 to 31 October 2020</a></li>
+                            <li class="nav-item w-25"><a class="nav-link" href="#super-two" data-toggle="tab">01 November 2020 - 10 December 2020</a></li>
+                            <li class="nav-item w-25"><a class="nav-link" href="#super-three" data-toggle="tab">11 December 2020 - 05 January 2021</a></li>
+                            <li class="nav-item w-25"><a class="nav-link" href="#super-four" data-toggle="tab">06 January 2021 - 31 April 2021</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="super-one" class="tab-pane active">
+                                <div class="table-responsive">
+                                    <table class="table small table-bordered shadow-sm bg-white table-striped table-hover mt-0">
+                                        <thead id="lineargradient" class="rateshead">
+                                        <tr>
+                                            <th>GRP</th>
+                                            <th>1-3 Days <small>per day</small></th>
+                                            <th>4-14 Days <small>per day</small></th>
+                                            <th>15 + Days <small>per day</small></th>
+                                            <th>Excess - <small>Non Waiverable</small></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="ratesbody">
+                                        {% for x in table_nine %}
+                                            <tr>
+                                                <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="super-two" class="tab-pane">
+                                <div class="table-responsive">
+                                    <table class="table small table-bordered shadow-sm bg-white table-striped table-hover mt-0">
+                                        <thead id="lineargradient" class="rateshead">
+                                        <tr>
+                                            <th>GRP</th>
+                                            <th>1-3 Days <small>per day</small></th>
+                                            <th>4-14 Days <small>per day</small></th>
+                                            <th>15 + Days <small>per day</small></th>
+                                            <th>Excess - <small>Non Waiverable</small></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="ratesbody">
+                                        {% for x in table_ten %}
+                                            <tr>
+                                                <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="super-three" class="tab-pane">
+                                <div class="table-responsive">
+                                    <table class="table small table-bordered shadow-sm bg-white table-striped table-hover mt-0">
+                                        <thead id="lineargradient" class="rateshead">
+                                        <tr>
+                                            <th>GRP</th>
+                                            <th>1-3 Days <small>per day</small></th>
+                                            <th>4-14 Days <small>per day</small></th>
+                                            <th>15 + Days <small>per day</small></th>
+                                            <th>Excess - <small>Non Waiverable</small></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="ratesbody">
+                                        {% for x in table_twelve %}
+                                            <tr>
+                                                <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="super-four" class="tab-pane">
+                                <div class="table-responsive">
+                                    <table class="table small table-bordered shadow-sm bg-white table-striped table-hover mt-0">
+                                        <thead id="lineargradient" class="rateshead">
+                                        <tr>
+                                            <th>GRP</th>
+                                            <th>1-3 Days <small>per day</small></th>
+                                            <th>4-14 Days <small>per day</small></th>
+                                            <th>15 + Days <small>per day</small></th>
+                                            <th>Excess - <small>Non Waiverable</small></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="ratesbody">
+                                        {% for x in table_eleven %}
+                                            <tr>
+                                                <td>{{ x.vehicle_group|upper|escape }}</td>
+                                                <td>R {{ x.day_rate_1|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.day_rate_2|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.day_rate_3|number_format(2,'.',',')|escape }}</td>
+                                                <td>R {{ x.liability|number_format(2,'.',',')|escape }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

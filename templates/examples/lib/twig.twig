@@ -1,0 +1,41 @@
+{% include 'twig_head.twig' %} 
+
+{% block header %}
+  <div class="container">
+    <div class="col-md-12">
+      <h1>Contact Form Submissions</h1>
+    </div>
+  </div>
+{% endblock %}
+
+{% block main %}
+  <table class="table table-responsive table-striped">
+    <thead>
+      <tr>
+        <th>{{ thead.0|capitalize|escape }}</th>
+        <th>{{ thead.1|capitalize|escape }}</th>
+        <th>{{ thead.2|capitalize|escape }}</th>
+        <th>{{ thead.3|capitalize|escape }}</th>
+        <th>{{ thead.5|capitalize|escape }}</th>
+        <th>{{ thead.6|capitalize|escape }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in tbody %}
+        <tr>
+          <td>{{ r.id|capitalize|escape }}</td>
+          <td>{{ r.name|capitalize|escape }}</td>
+          <td>{{ r.surname|capitalize|escape }}</td>
+          <td><a href="mailto:{{ r.email|escape }}">{{ r.email|escape }}</a></td>
+          <td>{{ r.message|capitalize|escape }}</td>
+          <td>{{ r.date|capitalize|escape }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+
+
+{% include 'twig_js.twig' %}
+
